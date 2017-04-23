@@ -56,14 +56,16 @@ if (!isset($_SESSION["Role"])) {
                 <h1>Nouvelle Molecule</h1>
                 <FONT color="red">
                     <?php
-                switch ($_GET["er"]) {
-                    case "nom" :
-                        echo ' <h3> Erreur : Nom non renseigné </h3><br> ';
-                        break;
-                    
-                    default :
-                        break;
-                }
+                    if(isset($_GET['er'])){
+                        switch ($_GET["er"]) {
+                            case "nom" :
+                                echo ' <h3> Erreur : Nom non renseigné </h3><br> ';
+                                break;
+                            
+                            default :
+                                break;
+                        }
+                    }
                 ?>
                 </FONT>
                 <div class="form-group">

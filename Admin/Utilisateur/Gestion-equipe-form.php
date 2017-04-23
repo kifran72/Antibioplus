@@ -50,10 +50,16 @@ require_once("../../modele/utilisateur.php");
         <div class="container">
             <h1>Gestion des équipes</h1>
             <div class="container">
-                <form>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Rechercher une équipe</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+                <form class="form" method="post">
+                    <div class="form-group container-fluid">
+                    <div class="col-sm-8">
+                        <label for="search-team">Rechercher une équipe</label>
+                        
+                            <input type="text" class="form-control" id="search-team" placeholder="Nom de l'équipe" name="team-name">
+                        </div>
+                        <div class="col-sm-4" style="margin-top: 25px;">
+                            <button type="submit" class="btn btn-success">Rechercher</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -61,24 +67,27 @@ require_once("../../modele/utilisateur.php");
         <div class="container">
             <h3>Créer une équipe</h3>
             <div class="container">
-                <form class="form" method="post" action="Gestion-utilisateurs-form.php">
-                    <div class="form-group">
-                        <label for="nomequipe">Example label</label>
-                        <input type="text" class="form-control" id="nomequipe" placeholder="Nom équipe">
+                <form class="form" method="post" action="">
+                    <div class="form-group container-fluid ">
+                        <div class="col-sm-8">
+                            <label for="nomequipe">Example label</label>
+                            <input type="text" class="form-control" id="nomequipe" placeholder="Nom équipe">
+                        </div>
                     </div>
-                    <div class="form-group form-ajout-equipe">
-                        <label style="margin-right: 5px;">Ajouter des membres</label><span class="glyphicon glyphicon-plus-sign" id="ajout_bouton" style="font-size: 1.2em;" aria-hidden="true"></span>
-                        <select class="form-control" id="sel1">
+                    
+                        <div class="form-group container-fluid form-ajout-equipe">
+                        <div class="col-sm-8">
+                            <label style="margin-right: 5px;">Ajouter des membres</label><span class="glyphicon glyphicon-plus-sign" id="ajout_bouton" style="font-size: 1.2em;" aria-hidden="true"></span>
+                            <select class="form-control" id="sel1">
+                                <?php
+                                    $utilisateurs = new utilisateur;
                         
-                        <?php
-                            $utilisateurs = new utilisateur;
-
-                            $list_utilisateurs = $utilisateurs->getUtilisateurs();
-
-                            $utilisateurs->fillInputUtilisateur($list_utilisateurs);
-                        ?>
+                                    $list_utilisateurs = $utilisateurs->getUtilisateurs();
                         
-                        </select>
+                                    $utilisateurs->fillInputUtilisateur($list_utilisateurs);
+                                ?>
+                            </select>
+                        </div>
                     </div>
                 </form>
             </div>

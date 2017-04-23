@@ -55,17 +55,17 @@ if (!isset($_SESSION["Role"])) {
             <form action="Page-Ajout-bac.php" method="post">
                 <h1>Nouvelle Bacterie</h1>
                 <FONT color="red">
-                    <?php
-                switch ($_GET["er"]) {
-                    case "nom" :
-                        echo ' <h3> Erreur : Nom non renseigné </h3><br> ';
-                        break;
-                    case "souche":
-                        echo ' <h3> Erreur : Souche non renseigné </h3><br> ';
-                    
-                    default :
-                        break;
-                }
+                     <?php
+                    if(isset($_GET['er'])){
+                        switch ($_GET["er"]) {
+                            case "nom" :
+                                echo ' <h3> Erreur : Nom non renseigné </h3><br> ';
+                                break;
+                            
+                            default :
+                                break;
+                        }
+                    }
                 ?>
                 </FONT>
                 <div class="form-group">

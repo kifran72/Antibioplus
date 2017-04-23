@@ -8,7 +8,7 @@ $(document).ready(function(){
         e.preventDefault(); // Permet de ne pas rediriger vers une autre page au cas où
         if(x < maximum_p){
             x++;
-            $(wrapper).append('<select class="form-control" id="sel1"><?php $utilisateurs = new utilisateur; $list_utilisateurs = $utilisateurs->getUtilisateurs(); $utilisateurs->fillInputUtilisateur($list_utilisateurs); ?></select>')
+            $(wrapper).append('<div class="col-sm-8"><select class="form-control" id="sel1"><?php $utilisateurs = new utilisateur; $list_utilisateurs = $utilisateurs->getUtilisateurs(); $utilisateurs->fillInputUtilisateur($list_utilisateurs); ?></select></div>')
         }
     })
 });

@@ -55,14 +55,17 @@ if (!isset($_SESSION["Role"])) {
         <div class="container">
             <form action="Page-ajout-anti.php" method="post">
                 <h1>Nouvel Antibiotique</h1><FONT color="red">
-                <?php
-                switch ($_GET["er"]) {
-                    case "nom" :
-                        echo ' <h3> Erreur : Nom non renseigné </h3><br> ';
-                        break;
-                    default :
-                        break;
-                }
+                 <?php
+                    if(isset($_GET['er'])){
+                        switch ($_GET["er"]) {
+                            case "nom" :
+                                echo ' <h3> Erreur : Nom non renseigné </h3><br> ';
+                                break;
+                            
+                            default :
+                                break;
+                        }
+                    }
                 ?>
                 </FONT>
                 <div class="form-group">
