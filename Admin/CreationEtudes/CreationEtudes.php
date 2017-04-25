@@ -1,3 +1,17 @@
+
+<?php
+session_start();
+if (!isset($_SESSION["Role"])) {
+
+    header("location: ../Connexion/Page-co.php?mes");
+} else {
+    if ($_SESSION["Role"] != 0) {
+        header("location: ../Connexion/Page-co.php?mes");
+    }
+}
+include_once '../../Connexion/Config.php';
+?>
+
 <html>
 
 <head>
@@ -12,6 +26,9 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <script src ="JSEtude.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -19,16 +36,16 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="../../Admin/Page-acceuil-admin.php">Antibioplus</a>
+                <a class="navbar-brand" href="../../Admin/Page-acceuil-admin.php?mes">Antibioplus</a>
             </div>
             <ul class="nav navbar-nav">
 
-                <li><a href="../Utilisateur/Gestion-utilisateurs.php">Gestion utilisateurs</a></li>
-                <li><a href="../Utilisateur/Ajout-utilisateur-form.php">Ajout Utilisateur</a></li>
-                <li><a href="../Molecule/Ajout-molecule-form.php">Ajout Molecule</a></li>
-                <li><a href="../Antibiotique/Ajout-antibiotique-form.php">Ajout Antibiotique</a></li>
-                <li><a href="../Bacterie/Ajout-bacterie-form.php">Ajout Bacterie</a></li>
-                <li><a href="../Utilisateur/Gestion-equipe-form.php">Gestion D'equipe</a></li>
+                <li><a href="../Utilisateur/Gestion-utilisateurs.php?er">Gestion utilisateurs</a></li>
+                <li><a href="../Utilisateur/Ajout-utilisateur-form.php?er">Ajout Utilisateur</a></li>
+                <li><a href="../Molecule/Ajout-molecule-form.php?er">Ajout Molecule</a></li>
+                <li><a href="../Antibiotique/Ajout-antibiotique-form.php?er">Ajout Antibiotique</a></li>
+                <li><a href="../Bacterie/Ajout-bacterie-form.php?er">Ajout Bacterie</a></li>
+                <li><a href="../Utilisateur/Gestion-equipe-form.php?er">Gestion D'equipe</a></li>
                 <li class="active"><a href="#">Création d'étude</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -36,107 +53,132 @@
             </ul>
         </div>
     </nav>
+       <div class="container">
 
-   <form action="CreationEtudes-form.php" class="navbar-form navbar-left">
-        <h2>Creation d'étude</h2>
-
-
-        <div class="form-group">
-        <label for="CreatTeam">
-                Nom de l'étude:
-            </label>
-        <input type="text" class="form-control" name="Nom_Etude">
-        </div>
-
-
-        <div class="form-group">
-        <label for="CreatTeam">
-                Numéro de l'équipe:
-            </label>
-        <input type="text" class="form-control" name="Nbr_Equipe">
-        <input type="submit" class="btn btn-default" value="Ok">
-        </div>
-
-        <div class="form-group">
-        <label for="CreatTeam">
-                Nombre d'antibiotique:
-            </label>
-        <input type="text" class="form-control" name="Nbr_Equipe">
-        <input type="submit" class="btn btn-default" value="Ok">
-        </div>
-
-        <div class="form-group">
-        <label for="CreatTeam">
-                Nombre de Molecule:
-            </label>
-        <input type="text" class="form-control" name="Nbr_Equipe">
-        <input type="submit" class="btn btn-default" value="Ok">
-        </div>
-
-        <div class="form-group">
-        <label for="CreatTeam">
-                Nombre de bacterie:
-            </label>
-        <input type="text" class="form-control" name="Nbr_Equipe">
-        <input type="submit" class="btn btn-default" value="Ok">
-        </div>
-    </div>
-   </form>
-
-
-<div class="container">
-            <h1>Gestion des equipes</h1>
-
+            <h1>Nouvelle Etude</h1><FONT color="red">
+            <?php
+            switch ($_GET["er"]) {
+                case "mdp-0" :
+                    echo ' <h3> Erreur : mot de passe non renseigné </h3><br> ';
+                    break;
+                case "mdp-1" :
+                    echo ' <h3> Erreur : Confirmation mot de passe </h3><br> ';
+                    break;
+                case "role" :
+                    echo ' <h3> Erreur : Role non renseigné </h3><br> ';
+                    break;
+                case "nom" :
+                    echo ' <h3> Erreur : Nom non renseigné </h3><br> ';
+                    break;
+                case "prenom" :
+                    echo ' <h3> Erreur : Prenom non renseigné </h3><br> ';
+                    break;
+                case "mail" :
+                    echo ' <h3> Erreur : Email non renseigné </h3><br> ';
+                    break;
+                default :
+                    break;
+            }
+            ?>
+            </FONT>
+            <table id="tableaumol" class="table">
+                <tr>
+                    <th>Molecule</th>
+                </tr>
+            </table>
             
-        <form action="Gestion-utilisateurs.php" method="post">
+            <select id="choixmol">
+                <?php
+                
+                $db = new PDO("mysql:host=" . Config::SERVERNAME . ";dbname=" . Config::DBNAME, Config::USER, Config::PASSWORD);
 
-        <div class="container">
-                        <h2>Equipes disponible</h2>
-                        <table class="table">
-                                    <tr>
-                                        <th>Nom equipe</th>
-                                        <th>Nombres chercheurs</th>
-                                    </tr>
-                    <?php
-                    
-                    
-                    if (isset($_POST['action']) && !empty($_POST)) {
-                        $id_personne = $_POST['id'];
+                $reqmol = $db->prepare("SELECT * FROM molecule");
 
-                        require_once '../../Admin/Utilisateur/DeleteUser.php';
-                        DeleteUser($id_personne);
+                $reqmol->execute();
 
-                        echo 'Equipe supprimé !';
-                    }
-                    require_once '../../Connexion/Config.php';
+                $resultatmol = $reqmol->fetchAll();
 
-                    $db = new PDO("mysql:host=" . Config::SERVERNAME . ";dbname=" . Config::DBNAME, Config::USER, Config::PASSWORD);
+                foreach ($resultatmol as $lignemol) {
+                    echo "<option value=" . $lignemol["ID_Molecule"]. ">" . $lignemol["Nom_Molecule"] . "</option>";
+                }
 
-                    $req = $db->prepare("SELECT * FROM equipe, personne");
+                ?>
 
-                    $req->execute();
+            </select>
+            <input type="button" value="Ajouter" onclick="addmol(document.getElementById('tableaumol'), document.getElementById('choixmol').value);" />
 
-                    $resultat = $req->fetchAll();
+            <table id="tableaubac" class="table">
+                <tr>
+                    <th>Bacterie</th>
+                </tr>
+            </table>
+            
+            <select id="choixbac">
+                <?php
 
-                    foreach ($resultat as $ligne) {
-                        echo '<tr>' .
-                                '<td>' . $ligne['Nom_Equipe'] . '</td>' .
-                                '<td>' . $ligne['Nom_Equipe'] . '</td>' .
-                                '<td>' . '<form id="form-hidden" method="post" action="Gestion-utilisateurs.php">
-                                        <input type="submit" name="action" value="X" class="btn btn-danger" />
-                                        <input type="hidden" name="id" value="'.$ligne['ID_Equipe'].'">
-                                        <i id="supp" class="ion-android-close"></form></td></tr>';
+                $reqbac = $db->prepare("SELECT * FROM souche");
 
+                $reqbac->execute();
 
-                    }
+                $resultatbac = $reqbac->fetchAll();
 
-        ?>
+                foreach ($resultatbac as $lignebac) {
+                    echo "<option value=" . $lignebac["ID_Souche"]. ">" . $lignebac["Numero"] . "</option>";
+                }
+                ?>
 
+            </select>
+            <input type="button" value="Ajouter" onclick="addbac(document.getElementById('tableaubac'), document.getElementById('choixbac').value);" />
 
-                        </td>
-            </div>
+            <table id="tableaubio" class="table">
+                <tr>
+                    <th>Antibiotique</th>
+                    <th>Equipe</th>
+                </tr>
+            </table>
 
+            <select id="choixantibio">
+                <?php
+
+                $reqbio = $db->prepare("SELECT * FROM antibiotique");
+
+                $reqbio->execute();
+
+                $resultatbio = $reqbio->fetchAll();
+
+                foreach ($resultatbio as $lignebio) {
+                    echo "<option value=" . $lignebio["ID_Antibiotique"]. ">" . $lignebio["Nom_Antibiotique"] . "</option>";
+                }
+                ?>
+
+            </select> <select id="choixeq">
+                <?php
+                $reqeq = $db->prepare("SELECT * FROM equipe");
+                $reqeq->execute();
+                $resultateq = $reqeq->fetchAll();
+
+                foreach ($resultateq as $ligneeq) {
+                    echo "<option value=" . $ligneeq["ID_Equipe"]. ">" . $ligneeq["Nom_Equipe"] . "</option>";
+                }
+                ?>
+
+            </select>
+            <input type="button" value="Ajouter" onclick="addant(document.getElementById('tableaubio'), document.getElementById('choixantibio').value, document.getElementById('choixeq').value);" />
+            <br>
+            <br>
+            <br>
+            
+            <input type="text" name="Nom" placeholder="nom de l'etude"/>
+            
+            <br>
+            <br>
+            <form id="kanard" action="Page-Ajout-etude.php" method="post">
+                <input type="submit" value="Confimer" class="btn btn-success">
+                <a href="../Admin/Page-acceuil-admin.php?mes=ann" class="btn btn-info">annuler</a></td>
+            </form>
+        </div>
 
 </body>
+
 
 </html>

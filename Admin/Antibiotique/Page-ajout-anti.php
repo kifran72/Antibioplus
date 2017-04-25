@@ -3,10 +3,10 @@
 include_once '../../Connexion/Config.php';
 
 $Nom = $_POST["Nom"];
-var_dump($Nom);
+
 
 if ($_POST["Nom"] == "") {
-    header("location: Ajout-molecule-form.php?er=nom");
+    header("location: Ajout-antibiotique-form.php?er=nom");
     die();
 }
 

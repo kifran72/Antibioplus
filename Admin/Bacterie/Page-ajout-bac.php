@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../Connexion/config.php';
+include_once '../../Connexion/Config.php';
 
 $Nom = $_POST["Nom"];
 
@@ -12,7 +12,7 @@ if ($Nom == "") {
 $Souche = $_POST["Souche"];
 
 if ($Souche == "") {
-    header("location: Ajout-molecule-form.php?er=souche");
+    header("location: Ajout-bacterie-form.php?er=souche");
     die();
 }
 
@@ -48,21 +48,26 @@ else
 
 if (!$test)
 {
-    $reqS = $db->prepare("INSERT INTO Souche (Numero, ID_Bacterie) VALUES (:num, :ID)");
+    $reqS = $db->prepare("INSERT INTO souche (Numero, ID_Bacterie) VALUES (:num, :ID)");
     $reqS->bindParam(":num", $Souche);
     $reqS->bindParam(":ID", $ID);
 
     $reqS->execute();
-
     $reqS->errorInfo();
 
-    if ($reqS->errorInfo()[0] == '00000') {
-        header("location: ../Page-acceuil-admin.php?mes=bacok");
-    }
-
-    if ($reqS->errorInfo()[0] != '00000') {
-        header("location: ../Page-acceuil-admin.php?mes=fail-bac");
-    }
 }
-else {    header("location: ../Page-acceuil-admin.php?mes=fail-bac2");} 
+    
  
+//     if ($reqS->errorInfo()[0] == '00000') {
+//         header("location: ../Page-acceuil-admin.php?mes=bacok");
+//     }
+
+//     if ($reqS->errorInfo()[0] != '00000') {
+//         header("location: ../Page-acceuil-admin.php?mes=fail-bac");
+//     }
+// }
+// else {    header("location: ../Page-acceuil-admin.php?mes=fail-bac2");} 
+//  
+
+
+?>

@@ -1,6 +1,6 @@
 <?php
 
-include_once '../../Connexion/config.php';
+include_once '../../Connexion/Config.php';
 
 $Nom = $_POST["Nom"];
 

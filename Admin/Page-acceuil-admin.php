@@ -34,17 +34,17 @@ if (!isset($_SESSION["Role"])) {
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="../Admin/Page-acceuil-admin.php">Antibioplus</a>
+                    <a class="navbar-brand" href="../Admin/Page-acceuil-admin.php?mes">Antibioplus</a>
                 </div>
                 <ul class="nav navbar-nav">
                     
                     <li><a href="../Admin/Utilisateur/Gestion-utilisateurs.php?er">Gestion utilisateurs</a></li>
                     <li><a href="../Admin/Utilisateur/Ajout-utilisateur-form.php?er">Ajout Utilisateur</a></li>
-                    <li><a href="../Admin/Molecule/Ajout-molecule-form.php">Ajout Molecule</a></li>
-                    <li><a href="../Admin/Antibiotique/Ajout-antibiotique-form.php">Ajout Antibiotique</a></li>
-                    <li><a href="../Admin/Bacterie/Ajout-bacterie-form.php">Ajout Bacterie</a></li>
-                    <li><a href="../Admin/Utilisateur/Gestion-equipe-form.php">Gestion D'equipe</a></li>
-                    <li><a href="../Admin/CreationEtudes/CreationEtudes.php">Création d'étude</a></li>
+                    <li><a href="../Admin/Molecule/Ajout-molecule-form.php?er">Ajout Molecule</a></li>
+                    <li><a href="../Admin/Antibiotique/Ajout-antibiotique-form.php?er">Ajout Antibiotique</a></li>
+                    <li><a href="../Admin/Bacterie/Ajout-bacterie-form.php?er">Ajout Bacterie</a></li>
+                    <li><a href="../Admin/Utilisateur/Gestion-equipe-form.php?er">Gestion D'equipe</a></li>
+                    <li><a href="../Admin/CreationEtudes/CreationEtudes.php?er">Création d'étude</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../Connexion/Page-co.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -63,6 +63,7 @@ if (!isset($_SESSION["Role"])) {
         echo '<br>';
         echo '<br>';
         echo '<br>';
+
         switch ($_GET["mes"]) {
             case "bvn":
                 echo '  <div class="alert alert-success">

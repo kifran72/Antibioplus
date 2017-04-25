@@ -7,8 +7,8 @@ if ($_SESSION["Role"] != 0) {
 header("location: ../../Connexion/Page-co.php?mes");
 }
 }
-
 require_once("../../modele/utilisateur.php");
+require_once("../../modele/equipe.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,73 +26,96 @@ require_once("../../modele/utilisateur.php");
         <title>Gestion Equipe</title>
     </head>
     <body>
-          <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="../../Admin/Page-acceuil-admin.php">Antibioplus</a>
+                    <a class="navbar-brand" href="../../Admin/Page-acceuil-admin.php?mes">Antibioplus</a>
                 </div>
                 <ul class="nav navbar-nav">
-
-                    <li><a href="../Utilisateur/Gestion-utilisateurs.php">Gestion utilisateurs</a></li>
-                    <li><a href="../Utilisateur/Ajout-utilisateur-form.php">Ajout Utilisateur</a></li>
-                    <li><a href="../Molecule/Ajout-molecule-form.php">Ajout Molecule</a></li>
-                    <li><a href="../Antibiotique/Ajout-antibiotique-form.php">Ajout Antibiotique</a></li>
-                    <li><a href="../Bacterie/Ajout-bacterie-form.php">Ajout Bacterie</a></li>
+                    <li><a href="../Utilisateur/Gestion-utilisateurs.php?er">Gestion utilisateurs</a></li>
+                    <li><a href="../Utilisateur/Ajout-utilisateur-form.php?er">Ajout Utilisateur</a></li>
+                    <li><a href="../Molecule/Ajout-molecule-form.php?er">Ajout Molecule</a></li>
+                    <li><a href="../Antibiotique/Ajout-antibiotique-form.php?er">Ajout Antibiotique</a></li>
+                    <li><a href="../Bacterie/Ajout-bacterie-form.php?er">Ajout Bacterie</a></li>
                     <li class="active"><a href="#">Gestion D'equipe</a></li>
-                    <li><a href="../CreationEtudes/CreationEtudes.php">Création d'étude</a></li>
+                    <li><a href="../CreationEtudes/CreationEtudes.php?er">Création d'étude</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../Connexion/Deconnexion.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    <li><a href="../../Connexion/Deconnexion.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 </ul>
             </div>
         </nav>
-
         <div class="container">
             <h1>Gestion des équipes</h1>
             <div class="container">
                 <form class="form" method="post">
                     <div class="form-group container-fluid">
-                    <div class="col-sm-8">
-                        <label for="search-team">Rechercher une équipe</label>
-                        
+                        <div class="col-sm-8">
+                            <label for="search-team">Rechercher une équipe</label>
+                            
                             <input type="text" class="form-control" id="search-team" placeholder="Nom de l'équipe" name="team-name">
                         </div>
                         <div class="col-sm-4" style="margin-top: 25px;">
-                            <button type="submit" class="btn btn-success">Rechercher</button>
+                            <button type="submit" class="btn btn-search">Rechercher</button>
                         </div>
                     </div>
                 </form>
-            </div>
-        </div>                
-        <div class="container">
-            <h3>Créer une équipe</h3>
-            <div class="container">
-                <form class="form" method="post" action="">
-                    <div class="form-group container-fluid ">
-                        <div class="col-sm-8">
-                            <label for="nomequipe">Example label</label>
-                            <input type="text" class="form-control" id="nomequipe" placeholder="Nom équipe">
-                        </div>
-                    </div>
+                <?php
+                if (isset($_POST['team-name']) && !empty($_POST)) {
+                $equipe_name = $_POST['team-name'];
+                $equipe = new equipe;
+                $listequipe_recherche = $equipe->getEquipeByName($equipe_name);
+                
+                echo "<div class=\"container\">\n";
+                    echo "                        <table class=\"table\">\n";
+                        echo "                                    <tr>";
+                            echo "                                        <th>Nom équipe</th>";
+                        echo "                                    </tr>";
+                        
+                        foreach ($listequipe_recherche as $ligne) {
+                        echo '<tr>' .
+                            '<td>' . $ligne['Nom_Equipe'] . '</td>' .
+                            '<td>' . '<form id="form-hidden" method="post" action="">
+                                <input type="submit" name="action" value="X" class="btn btn-danger" />
+                                <input type="hidden" name="id" value="'.$ligne['ID_Equipe'].'">
+                            <i id="supp" class="ion-android-close"></form></td></tr>';
+                            }
+                        echo "</table>\n";
+                    echo "</div>";
+                    }
+                    ?>
                     
-                        <div class="form-group container-fluid form-ajout-equipe">
-                        <div class="col-sm-8">
-                            <label style="margin-right: 5px;">Ajouter des membres</label><span class="glyphicon glyphicon-plus-sign" id="ajout_bouton" style="font-size: 1.2em;" aria-hidden="true"></span>
-                            <select class="form-control" id="sel1">
-                                <?php
-                                    $utilisateurs = new utilisateur;
-                        
-                                    $list_utilisateurs = $utilisateurs->getUtilisateurs();
-                        
-                                    $utilisateurs->fillInputUtilisateur($list_utilisateurs);
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-        <script src="../app/js/ajout_personne_equipe.js"></script>
-    </body>
+            <div class="container">
+                <h3>Créer une équipe</h3>
+                <div class="container">
+                    <form class="form" method="post" action="">
+                        <div class="form-group container-fluid ">
+                            <div class="col-sm-8">
+                                <label for="nomequipe">Example label</label>
+                                <input type="text" class="form-control" id="nomequipe" placeholder="Nom équipe">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group container-fluid form-ajout-equipe">
+                            <div class="col-sm-8">
+                                <label style="margin-right: 5px;">Ajouter des membres</label><span class="glyphicon glyphicon-plus-sign" id="ajout_bouton" style="font-size: 1.2em;" aria-hidden="true"></span>
+                                <select class="form-control" id="sel1">
+                                    <?php
+                                    $utilisateurs = new utilisateur;
+                                    
+                                    $list_utilisateurs = $utilisateurs->getUtilisateurs();
+                                    
+                                    $utilisateurs->fillInputUtilisateur($list_utilisateurs);
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+            <script src="../app/js/ajout_personne_equipe.js"></script>
+        </body>
     </html>

@@ -34,17 +34,17 @@ if (!isset($_SESSION["Role"])) {
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="../../Admin/Page-acceuil-admin.php">Antibioplus</a>
+                    <a class="navbar-brand" href="../../Admin/Page-acceuil-admin.php?mes">Antibioplus</a>
                 </div>
                 <ul class="nav navbar-nav">
 
-                    <li><a href="../Utilisateur/Gestion-utilisateurs.php">Gestion utilisateurs</a></li>
-                    <li><a href="../Utilisateur/Ajout-utilisateur-form.php">Ajout Utilisateur</a></li>
-                    <li><a href="../Molecule/Ajout-molecule-form.php">Ajout Molecule</a></li>
-                    <li><a href="../Antibiotique/Ajout-antibiotique-form.php">Ajout Antibiotique</a></li>
+                    <li><a href="../Utilisateur/Gestion-utilisateurs.php?er">Gestion utilisateurs</a></li>
+                    <li><a href="../Utilisateur/Ajout-utilisateur-form.php?er">Ajout Utilisateur</a></li>
+                    <li><a href="../Molecule/Ajout-molecule-form.php?er">Ajout Molecule</a></li>
+                    <li><a href="../Antibiotique/Ajout-antibiotique-form.php?er">Ajout Antibiotique</a></li>
                     <li class="active"><a href="#">Ajout Bacterie</a></li>
-                    <li><a href="../Utilisateur/Gestion-equipe-form.php">Gestion D'equipe</a></li>
-                    <li><a href="../CreationEtudes/CreationEtudes.php">Création d'étude</a></li>
+                    <li><a href="../Utilisateur/Gestion-equipe-form.php?er">Gestion D'equipe</a></li>
+                    <li><a href="../CreationEtudes/CreationEtudes.php?er">Création d'étude</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../Connexion/Deconnexion.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -52,7 +52,7 @@ if (!isset($_SESSION["Role"])) {
             </div>
         </nav>
         <div class="container">
-            <form action="Page-Ajout-bac.php" method="post">
+            <form action="Page-ajout-bac.php" method="post">
                 <h1>Nouvelle Bacterie</h1>
                 <FONT color="red">
                      <?php
