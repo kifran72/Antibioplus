@@ -19,7 +19,16 @@ require_once("../../modele/equipe.php");
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-fr_FR.min.js"></script>
+
         <script src="../default/main.js"></script>
         <link rel="stylesheet" href="../default/main.css">
         <meta charset="UTF-8">
@@ -101,7 +110,7 @@ require_once("../../modele/equipe.php");
                         <div class="form-group container-fluid form-ajout-equipe">
                             <div class="col-sm-8">
                                 <label style="margin-right: 5px;">Ajouter des membres</label><span class="glyphicon glyphicon-plus-sign" id="ajout_bouton" style="font-size: 1.2em;" aria-hidden="true"></span>
-                                <select class="form-control" id="sel1">
+                                <select class="selectpicker" multiple>
                                     <?php
                                     $utilisateurs = new utilisateur;
                                     

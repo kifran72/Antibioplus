@@ -83,6 +83,49 @@ if (!isset($_SESSION["Role"])) {
                 <a href="../Page-acceuil-admin.php?mes=ann" class="btn btn-info">annuler</a></td>
             </form>
         </div>
+
+        <div class="container">
+            <h1>Gestion des bacteries</h1>
+            <div class="container">
+                <form class="form" method="post">
+                    <div class="form-group container-fluid">
+                        <div class="col-sm-8">
+                            <label for="search-bacterie">Rechercher une bacterie</label>
+                            
+                            <input type="text" class="form-control" id="search-bacterie" placeholder="Nom bacterie" name="bacterie-name">
+                        </div>
+                        <div class="col-sm-4" style="margin-top: 25px;">
+                            <button type="submit" class="btn btn-search">Rechercher</button>
+                        </div>
+                    </div>
+                </form>
+                <?php
+                if (isset($_POST['team-name']) && !empty($_POST)) {
+                $bacterie_name = $_POST['team-name'];
+                $bacterie = new Bacterie;
+                $listbacterie_recherche = $bacterie->getBacterieByName($bacterie_name);
+                
+                echo "<div class=\"container\">\n";
+                    echo "                        <table class=\"table\">\n";
+                        echo "                                    <tr>";
+                            echo "                                        <th>Nom bacterie</th>";
+                        echo "                                    </tr>";
+                        
+                        foreach ($listbacterie_recherche as $ligne) {
+                        echo '<tr>' .
+                            '<td>' . $ligne['Nom_Equipe'] . '</td>' .
+                            '<td>' . '<form id="form-hidden" method="post" action="">
+                                <input type="submit" name="action" value="X" class="btn btn-danger" />
+                                <input type="hidden" name="id" value="'.$ligne['ID_Equipe'].'">
+                            <i id="supp" class="ion-android-close"></form></td></tr>';
+                            }
+                        echo "</table>\n";
+                    echo "</div>";
+                    }
+                    ?>
+                    
+                </div>
+            </div>
     </body>
 
     </html>

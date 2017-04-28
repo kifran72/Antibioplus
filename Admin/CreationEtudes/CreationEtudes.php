@@ -10,6 +10,7 @@ if (!isset($_SESSION["Role"])) {
     }
 }
 include_once '../../Connexion/Config.php';
+include_once '../../modele/etude.php';
 ?>
 
 <html>
@@ -26,6 +27,15 @@ include_once '../../Connexion/Config.php';
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
 
 
     <script src ="JSEtude.js" charset="utf-8"></script>
@@ -55,7 +65,7 @@ include_once '../../Connexion/Config.php';
     </nav>
        <div class="container">
 
-            <h1>Nouvelle Etude</h1><FONT color="red">
+            <h1>Nouvelle Etude</h1><font color="red">
             <?php
             switch ($_GET["er"]) {
                 case "mdp-0" :
@@ -80,102 +90,51 @@ include_once '../../Connexion/Config.php';
                     break;
             }
             ?>
-            </FONT>
-            <table id="tableaumol" class="table">
-                <tr>
-                    <th>Molecule</th>
-                </tr>
-            </table>
+            </font>
             
-            <select id="choixmol">
-                <?php
-                
-                $db = new PDO("mysql:host=" . Config::SERVERNAME . ";dbname=" . Config::DBNAME, Config::USER, Config::PASSWORD);
+            <div class="container">
+                <h3>Création d'une étude</h3>
+                <div class="container">
+                    <form class="form" method="post" action="">
+                    <div class="form-group container-fluid ">
+                        <div class="col-sm-6">
+                                <label for="date-begin">Date de début</label>
+                                <input type="text" name="date-begin" class="form-control" id="date-begin" placeholder="Placer la date du début de l'étude sous la forme JJ/MM/AAAA">
+                            </div>
+                    </div>
+                        <div class="form-group container-fluid ">
+                            <div class="col-sm-8">
+                                <label for="nommol">Molécule</label>
+                                <select name="nommol" id="nommol" class="selectpicker">
+                                    <?php
+                                        $etude = new etude;
 
-                $reqmol = $db->prepare("SELECT * FROM molecule");
+                                        $list_mol = $etude->getMolecule();
 
-                $reqmol->execute();
+                                        $etude->fillInput($list_mol, "Nom_Molecule");
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
 
-                $resultatmol = $reqmol->fetchAll();
+                        <div class="form-group container-fluid ">
+                            <div class="col-sm-8">
+                                <label for="nommol">Bactérie</label>
+                                <select name="nommol" id="nommol" class="selectpicker">
+                                    <?php
+                                        $etude = new etude;
 
-                foreach ($resultatmol as $lignemol) {
-                    echo "<option value=" . $lignemol["ID_Molecule"]. ">" . $lignemol["Nom_Molecule"] . "</option>";
-                }
+                                        $list_bac = $etude->getBacterie();
 
-                ?>
+                                        $etude->fillInput($list_bac, "Nom_Bacterie");
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
-            </select>
-            <input type="button" value="Ajouter" onclick="addmol(document.getElementById('tableaumol'), document.getElementById('choixmol').value);" />
-
-            <table id="tableaubac" class="table">
-                <tr>
-                    <th>Bacterie</th>
-                </tr>
-            </table>
-            
-            <select id="choixbac">
-                <?php
-
-                $reqbac = $db->prepare("SELECT * FROM souche");
-
-                $reqbac->execute();
-
-                $resultatbac = $reqbac->fetchAll();
-
-                foreach ($resultatbac as $lignebac) {
-                    echo "<option value=" . $lignebac["ID_Souche"]. ">" . $lignebac["Numero"] . "</option>";
-                }
-                ?>
-
-            </select>
-            <input type="button" value="Ajouter" onclick="addbac(document.getElementById('tableaubac'), document.getElementById('choixbac').value);" />
-
-            <table id="tableaubio" class="table">
-                <tr>
-                    <th>Antibiotique</th>
-                    <th>Equipe</th>
-                </tr>
-            </table>
-
-            <select id="choixantibio">
-                <?php
-
-                $reqbio = $db->prepare("SELECT * FROM antibiotique");
-
-                $reqbio->execute();
-
-                $resultatbio = $reqbio->fetchAll();
-
-                foreach ($resultatbio as $lignebio) {
-                    echo "<option value=" . $lignebio["ID_Antibiotique"]. ">" . $lignebio["Nom_Antibiotique"] . "</option>";
-                }
-                ?>
-
-            </select> <select id="choixeq">
-                <?php
-                $reqeq = $db->prepare("SELECT * FROM equipe");
-                $reqeq->execute();
-                $resultateq = $reqeq->fetchAll();
-
-                foreach ($resultateq as $ligneeq) {
-                    echo "<option value=" . $ligneeq["ID_Equipe"]. ">" . $ligneeq["Nom_Equipe"] . "</option>";
-                }
-                ?>
-
-            </select>
-            <input type="button" value="Ajouter" onclick="addant(document.getElementById('tableaubio'), document.getElementById('choixantibio').value, document.getElementById('choixeq').value);" />
-            <br>
-            <br>
-            <br>
-            
-            <input type="text" name="Nom" placeholder="nom de l'etude"/>
-            
-            <br>
-            <br>
-            <form id="kanard" action="Page-Ajout-etude.php" method="post">
-                <input type="submit" value="Confimer" class="btn btn-success">
-                <a href="../Admin/Page-acceuil-admin.php?mes=ann" class="btn btn-info">annuler</a></td>
-            </form>
         </div>
 
 </body>
