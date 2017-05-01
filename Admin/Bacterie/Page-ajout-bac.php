@@ -31,7 +31,7 @@ if(count($resultat)==0)
         $reqB->bindParam(":nom", $Nom);
         $reqB->execute();
         $ID = $db->lastInsertId();
-        
+       echo "Bacterie crée"; 
     }
 else 
     {

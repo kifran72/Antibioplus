@@ -1,7 +1,7 @@
 <?php 
 require_once '../../Connexion/Config.php';
 
-    class utilisateur {
+    class Utilisateur {
         
         function getUtilisateurs(){
             $db = new PDO("mysql:host=" . Config::SERVERNAME . ";dbname=" . Config::DBNAME, Config::USER, Config::PASSWORD);

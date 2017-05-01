@@ -9,6 +9,8 @@ if (!isset($_SESSION["Role"])) {
         header("location: ../../Connexion/Page-co.php?mes");
     }
 }
+include "../../modele/molecule.php";
+
 ?>
 
     <!DOCTYPE html>
@@ -52,30 +54,65 @@ if (!isset($_SESSION["Role"])) {
             </div>
         </nav>
         <div class="container">
-            <form action="Page-Ajout-mol.php" method="post">
+            <form class="form" method="post">
                 <h1>Nouvelle Molecule</h1>
-                <FONT color="red">
-                    <?php
-                    if(isset($_GET['er'])){
-                        switch ($_GET["er"]) {
-                            case "nom" :
-                                echo ' <h3> Erreur : Nom non renseigné </h3><br> ';
-                                break;
-                            
-                            default :
-                                break;
-                        }
-                    }
-                ?>
-                </FONT>
                 <div class="form-group">
                     <label for="Nom" class="control-label col-md-2">Nom</label>
 
-                    <input type="text" name="Nom" id="Nom" class="form-control">
+                    <input type="text" name="add" id="add" class="form-control">
                 </div>
 
                 <input type="submit" value="Confimer" class="btn btn-success">
-                <a href="../Page-acceuil-admin.php?mes=ann" class="btn btn-info">annuler</a></td>
+                <?php
+                  if (isset($_POST['add']) && !empty($_POST))
+                  {
+                    $addMol = $_POST['add'];
+                    $mol = new Molecule;
+                    $addMolecule = $mol->addMolecule();
+
+                    echo 'Molecule créée !';
+                    }
+                
+                    
+                ?>
+            </form>
+                <div class="container">
+            <h1>Gestion des molecules</h1>
+            <div class="container">
+                <form class="form" method="post">
+                    <div class="form-group container-fluid">
+                        <div class="col-sm-3">
+                            <label for="search-molecule">Rechercher une molecule</label>
+                            <input type="text" class="form-control" id="search-molecule" placeholder="Nom molecule" name="molecule-name">
+                        </div>
+                        <div class="col-sm-4" style="margin-top: 25px;">
+                            <button type="submit" class="btn btn-search">Rechercher</button>
+                        </div>
+                    </div>
+                <?php
+                if (isset($_POST['molecule-name']) && !empty($_POST)) {
+                $molecule_name = $_POST['molecule-name'];
+                $molecule = new Molecule;
+                $listMolecule_recherche = $molecule->getMoleculeByName($molecule_name);
+                
+                echo "<div class=\"container\">\n";
+                    echo "                        <table class=\"table\">\n";
+                        echo "                                    <tr>";
+                            echo "                                        <th>Nom molecule</th>";
+                        echo "                                    </tr>";
+                        
+                        foreach ($listMolecule_recherche as $ligne) {
+                        echo '<tr>' .
+                            '<td>' . $ligne['Nom_Molecule'] . '</td>' .
+                            '<td>' . '<form id="form-hidden" method="post" action="">
+                                <input type="submit" name="action" value="X" class="btn btn-danger" />
+                                <input type="hidden" name="id" value="'.$ligne['ID_Molecule'].'">
+                            <i id="supp" class="ion-android-close"></form></td></tr>';
+                            }
+                        echo "</table>\n";
+                    echo "</div>";
+                    }
+                    ?>
             </form>
         </div>
     </body>

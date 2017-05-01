@@ -10,9 +10,12 @@ header("location: ../../Connexion/Page-co.php?mes");
 require_once("../../modele/utilisateur.php");
 require_once("../../modele/equipe.php");
 ?>
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
+
     <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!-- Optional theme -->
@@ -34,6 +37,7 @@ require_once("../../modele/equipe.php");
         <meta charset="UTF-8">
         <title>Gestion Equipe</title>
     </head>
+
     <body>
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
@@ -61,7 +65,7 @@ require_once("../../modele/equipe.php");
                     <div class="form-group container-fluid">
                         <div class="col-sm-8">
                             <label for="search-team">Rechercher une équipe</label>
-                            
+
                             <input type="text" class="form-control" id="search-team" placeholder="Nom de l'équipe" name="team-name">
                         </div>
                         <div class="col-sm-4" style="margin-top: 25px;">
@@ -72,7 +76,7 @@ require_once("../../modele/equipe.php");
                 <?php
                 if (isset($_POST['team-name']) && !empty($_POST)) {
                 $equipe_name = $_POST['team-name'];
-                $equipe = new equipe;
+                $equipe = new Equipe;
                 $listequipe_recherche = $equipe->getEquipeByName($equipe_name);
                 
                 echo "<div class=\"container\">\n";
@@ -93,38 +97,47 @@ require_once("../../modele/equipe.php");
                     echo "</div>";
                     }
                     ?>
-                    
-                </div>
+
             </div>
+        </div>
+        <div class="container">
+            <h3>Créer une équipe</h3>
             <div class="container">
-                <h3>Créer une équipe</h3>
-                <div class="container">
-                    <form class="form" method="post" action="">
-                        <div class="form-group container-fluid ">
-                            <div class="col-sm-8">
-                                <label for="nomequipe">Example label</label>
-                                <input type="text" class="form-control" id="nomequipe" placeholder="Nom équipe">
-                            </div>
+                <form class="form" method="post" action="">
+                    <div class="form-group container-fluid ">
+                        <div class="col-sm-8">
+                            <label for="nomequipe">Nom equipe</label>
+                            <input type="text" class="form-control" id="nomequipe" placeholder="Nom équipe">
                         </div>
-                        
-                        <div class="form-group container-fluid form-ajout-equipe">
-                            <div class="col-sm-8">
-                                <label style="margin-right: 5px;">Ajouter des membres</label><span class="glyphicon glyphicon-plus-sign" id="ajout_bouton" style="font-size: 1.2em;" aria-hidden="true"></span>
-                                <select class="selectpicker" multiple>
-                                    <?php
-                                    $utilisateurs = new utilisateur;
+                    </div>
+                    <div class="form-group container-fluid form-ajout-equipe">
+                        <div class="col-sm-8">
+                            <label style="margin-right: 5px;">Ajouter des membres</label>
+
+                            <select id="done" class="selectpicker" multiple data-done-button="true">
+                                
+                                <?php
+                                    $utilisateurs = new Utilisateur;
                                     
                                     $list_utilisateurs = $utilisateurs->getUtilisateurs();
                                     
                                     $utilisateurs->fillInputUtilisateur($list_utilisateurs);
-                                    ?>
-                                </select>
-                            </div>
+                                ?>
+                              
+                          </select>
+                           
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
-            <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-            <script src="../app/js/ajout_personne_equipe.js"></script>
-        </body>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
+        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
+
+    </body>
+
     </html>

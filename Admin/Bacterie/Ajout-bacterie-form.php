@@ -9,6 +9,7 @@ if (!isset($_SESSION["Role"])) {
         header("location: ../../Connexion/Page-co.php?mes");
     }
 }
+include "../../modele/bacterie.php"
 ?>
 
     <!DOCTYPE html>
@@ -80,7 +81,7 @@ if (!isset($_SESSION["Role"])) {
                 </div>
 
                 <input type="submit" value="Confimer" class="btn btn-success">
-                <a href="../Page-acceuil-admin.php?mes=ann" class="btn btn-info">annuler</a></td>
+                
             </form>
         </div>
 
@@ -89,9 +90,8 @@ if (!isset($_SESSION["Role"])) {
             <div class="container">
                 <form class="form" method="post">
                     <div class="form-group container-fluid">
-                        <div class="col-sm-8">
+                        <div class="col-sm-3">
                             <label for="search-bacterie">Rechercher une bacterie</label>
-                            
                             <input type="text" class="form-control" id="search-bacterie" placeholder="Nom bacterie" name="bacterie-name">
                         </div>
                         <div class="col-sm-4" style="margin-top: 25px;">
@@ -100,8 +100,8 @@ if (!isset($_SESSION["Role"])) {
                     </div>
                 </form>
                 <?php
-                if (isset($_POST['team-name']) && !empty($_POST)) {
-                $bacterie_name = $_POST['team-name'];
+                if (isset($_POST['bacterie-name']) && !empty($_POST)) {
+                $bacterie_name = $_POST['bacterie-name'];
                 $bacterie = new Bacterie;
                 $listbacterie_recherche = $bacterie->getBacterieByName($bacterie_name);
                 
@@ -113,10 +113,10 @@ if (!isset($_SESSION["Role"])) {
                         
                         foreach ($listbacterie_recherche as $ligne) {
                         echo '<tr>' .
-                            '<td>' . $ligne['Nom_Equipe'] . '</td>' .
+                            '<td>' . $ligne['Nom_Bacterie'] . '</td>' .
                             '<td>' . '<form id="form-hidden" method="post" action="">
                                 <input type="submit" name="action" value="X" class="btn btn-danger" />
-                                <input type="hidden" name="id" value="'.$ligne['ID_Equipe'].'">
+                                <input type="hidden" name="id" value="'.$ligne['ID_Bacterie'].'">
                             <i id="supp" class="ion-android-close"></form></td></tr>';
                             }
                         echo "</table>\n";

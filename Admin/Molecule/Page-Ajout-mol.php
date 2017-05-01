@@ -2,13 +2,6 @@
 
 include_once '../../Connexion/Config.php';
 
-$Nom = $_POST["Nom"];
-
-if ($_POST["Nom"] == "") 
-    {
-        header("location: Ajout-molecule-form.php?er=nom");
-        die();
-    }
 
 $db = new PDO("mysql:host=" . Config::SERVERNAME . ";dbname=" . Config::DBNAME, Config::USER, Config::PASSWORD);
 
