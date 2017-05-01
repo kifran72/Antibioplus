@@ -16,11 +16,11 @@ if (!isset($_SESSION["Role"])) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Creer Antibio</title>
+        <title>Antibiotique</title>
         <script
             src="https://code.jquery.com/jquery-3.1.1.js"
             integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-        crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -56,16 +56,7 @@ if (!isset($_SESSION["Role"])) {
             <form action="Page-ajout-anti.php" method="post">
                 <h1>Nouvel Antibiotique</h1><FONT color="red">
                  <?php
-                    if(isset($_GET['er'])){
-                        switch ($_GET["er"]) {
-                            case "nom" :
-                                echo ' <h3> Erreur : Nom non renseigné </h3><br> ';
-                                break;
-                            
-                            default :
-                                break;
-                        }
-                    }
+                  
                 ?>
                 </FONT>
                 <div class="form-group">
