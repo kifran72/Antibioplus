@@ -9,6 +9,8 @@ if (!isset($_SESSION["Role"])) {
         header("location: ../../Connexion/Page-co.php?mes");
     }
 }
+
+include "../../modele/antibiotique.php";
 ?>
 
 <!DOCTYPE html>
@@ -66,9 +68,50 @@ if (!isset($_SESSION["Role"])) {
                 </div>
                 
                 <input type="submit" value="Confimer" class="btn btn-success">
-                <a href="../Page-acceuil-admin.php?mes=ann" class="btn btn-info">annuler</a></td>
             </form>
         </div>
+    
+         <div class="container">
+            <h1>Gestion des antibiotiques</h1>
+            <div class="container">
+                <form class="form" method="post">
+                    <div class="form-group container-fluid">
+                        <div class="col-sm-3">
+                            <label for="search-antibio">Rechercher un antibiotique</label>
+                            <input type="text" class="form-control" id="search-antibio" placeholder="Nom antibiotique" name="antibio-name">
+                        </div>
+                        <div class="col-sm-4" style="margin-top: 25px;">
+                            <button type="submit" class="btn btn-search">Rechercher</button>
+                        </div>
+                    </div>
+                </form>
+                <?php
+                if (isset($_POST['antibio-name']) && !empty($_POST)) {
+                $antibio_name = $_POST['antibio-name'];
+                $antibio = new Antibiotique;
+                $listantibio_recherche = $antibio->getAntibioByName($antibio_name);
+                
+                echo "<div class=\"container\">\n";
+                    echo "                        <table class=\"table\">\n";
+                        echo "                                    <tr>";
+                            echo "                                        <th>Nom antibiotique</th>";
+                        echo "                                    </tr>";
+                        
+                        foreach ($listantibio_recherche as $ligne) {
+                        echo '<tr>' .
+                            '<td>' . $ligne['Nom_Antibiotique'] . '</td>' .
+                            '<td>' . '<form id="form-hidden" method="post" action="">
+                                <input type="submit" name="action" value="X" class="btn btn-danger" />
+                                <input type="hidden" name="id" value="'.$ligne['ID_Antibiotique'].'">
+                            <i id="supp" class="ion-android-close"></form></td></tr>';
+                            }
+                        echo "</table>\n";
+                    echo "</div>";
+                    }
+                    ?>
+                    
+                </div>
+            </div>
     </body>
 </html>
 
