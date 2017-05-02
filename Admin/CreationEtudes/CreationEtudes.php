@@ -106,6 +106,8 @@ include_once '../../modele/etude.php';
                                 <input type="text" name="date-begin" class="form-control" id="date-begin" placeholder="JJ/MM/AAAA">
                             </div>
                         </div>
+
+                        
                         <div class="form-group container-fluid ">
                             <div class="col-sm-8">
                                 <label for="nommol">Molécule</label>

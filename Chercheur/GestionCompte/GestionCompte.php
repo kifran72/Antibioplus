@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION["Role"])) {
+
+    header("location: ../Connexion/Page-co.php?mes");
+} else {
+    if ($_SESSION["Role"] != 1) {
+        header("location: ../Connexion/Page-co.php?mes");
+    }
+}
+?>
 
 <html>
 <head>
@@ -23,8 +34,8 @@
                 <ul class="nav navbar-nav">
                     
                     <li class="active"><a href="#">Gestion du compte</a></li>
-                    <li><a href="../Admin/Utilisateur/Ajout-utilisateur-form.php?er">Etude en cours</a></li>
-                    <li><a href="../Admin/Utilisateur/Ajout-utilisateur-form.php?er">Recherche d'étude</a></li>
+                    <li><a href="../../Admin/Utilisateur/Ajout-utilisateur-form.php?er">Etude en cours</a></li>
+                    <li><a href="../../Admin/Utilisateur/Ajout-utilisateur-form.php?er">Recherche d'étude</a></li>
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

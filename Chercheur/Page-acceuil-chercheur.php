@@ -36,7 +36,7 @@ header("location: ../Connexion/Page-co.php?mes");
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../Connexion/Deconnexion.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    <li><a href="../../Connexion/Deconnexion.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 </ul>
             </div>
         </nav>

@@ -31,12 +31,6 @@ require_once("../../modele/equipe.php");
 
         <!-- (Optional) Latest compiled and minified JavaScript translation files -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-fr_FR.min.js"></script>
-                <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-
-        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
 
         <script src="../default/main.js"></script>
         <link rel="stylesheet" href="../default/main.css">
@@ -120,10 +114,16 @@ require_once("../../modele/equipe.php");
                         <div class="col-sm-8">
                             <label style="margin-right: 5px;">Ajouter des membres</label>
 
-                            <select id="done" class="selectpicker" multiple>
-                              <option>loool</option>
-                              <option>llpjjg</option>
-                              <option>okhhjdhgr</option>
+                            <select id="done" class="selectpicker" multiple data-done-button="true">
+                                
+                                <?php
+                                    $utilisateurs = new Utilisateur;
+                                    
+                                    $list_utilisateurs = $utilisateurs->getUtilisateurs();
+                                    
+                                    $utilisateurs->fillInputUtilisateur($list_utilisateurs);
+                                ?>
+                              
                           </select>
                            
                         </div>
@@ -131,7 +131,12 @@ require_once("../../modele/equipe.php");
                 </form>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
+        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
 
     </body>
 
