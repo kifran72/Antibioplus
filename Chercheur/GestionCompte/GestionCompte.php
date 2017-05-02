@@ -1,16 +1,9 @@
-<?php
-session_start();
-if (!isset($_SESSION["Role"])) {
-header("location: ../Connexion/Page-co.php?mes");
-} 
-if ($_SESSION["Role"] != 1) {
-header("location: ../Connexion/Page-co.php?mes");
-}
 
-?>
-<!DOCTYPE html>
 <html>
-    <head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -19,11 +12,10 @@ header("location: ../Connexion/Page-co.php?mes");
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="/vue/Aceuil.css">
-        <title>Acceuil Admin</title>
-    </head>
-    <body>
-        <nav class="navbar navbar-inverse">
+    <title>Gestion du compte</title>
+</head>
+<body>
+       <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="../Admin/Page-acceuil-admin.php?mes">Antibioplus</a>
@@ -40,5 +32,9 @@ header("location: ../Connexion/Page-co.php?mes");
                 </ul>
             </div>
         </nav>
-    </body>
+    
+
+
+    
+</body>
 </html>

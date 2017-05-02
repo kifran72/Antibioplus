@@ -46,7 +46,7 @@ if (!isset($_SESSION["Role"])) {
                     <li><a href="../CreationEtudes/CreationEtudes.php?er">Création d'étude</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../Connexion/Deconnexion.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    <li><a href="../../Connexion/Deconnexion.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 </ul>
             </div>
         </nav>
