@@ -65,33 +65,6 @@ include_once '../../modele/etude.php';
         <div class="container">
 
             <h1>Nouvelle Etude</h1>
-            <font color="red">
-                <?php
-            switch ($_GET["er"]) {
-                case "mdp-0" :
-                    echo ' <h3> Erreur : mot de passe non renseigné </h3><br> ';
-                    break;
-                case "mdp-1" :
-                    echo ' <h3> Erreur : Confirmation mot de passe </h3><br> ';
-                    break;
-                case "role" :
-                    echo ' <h3> Erreur : Role non renseigné </h3><br> ';
-                    break;
-                case "nom" :
-                    echo ' <h3> Erreur : Nom non renseigné </h3><br> ';
-                    break;
-                case "prenom" :
-                    echo ' <h3> Erreur : Prenom non renseigné </h3><br> ';
-                    break;
-                case "mail" :
-                    echo ' <h3> Erreur : Email non renseigné </h3><br> ';
-                    break;
-                default :
-                    break;
-            }
-            ?>
-            </font>
-
             <div class="container">
                 <h3>Création d'une étude</h3>
                 <div class="container">
@@ -106,7 +79,12 @@ include_once '../../modele/etude.php';
                                 <input type="text" name="date-begin" class="form-control" id="date-begin" placeholder="JJ/MM/AAAA">
                             </div>
                         </div>
-
+                        <div class="container"> 
+                            <h2>Veuillez indiquer le nombre d'antibiotique</h2>
+                        </div>
+                        <div class="container">
+                            <h2>Veuillez indiquer le nombre de molecule</h2>
+                        </div>
                         
                         <div class="form-group container-fluid ">
                             <div class="col-sm-8">
