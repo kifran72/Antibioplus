@@ -26,13 +26,13 @@ header("location: ../Connexion/Page-co.php?mes");
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="../Admin/Page-acceuil-admin.php?mes">Antibioplus</a>
+                    <a class="navbar-brand" href="../Chercheur/Page-acceuil-chercheur.php">Antibioplus</a>
                 </div>
                 <ul class="nav navbar-nav">
                     
-                    <li><a href="../Admin/Utilisateur/Gestion-utilisateurs.php?er">Gestion du compte</a></li>
-                    <li><a href="../Admin/Utilisateur/Ajout-utilisateur-form.php?er">Etude en cours</a></li>
-                    <li><a href="../Admin/Utilisateur/Ajout-utilisateur-form.php?er">Recherche d'étude</a></li>
+                    <li><a href="../Chercheur/GestionCompte/GestionCompte.php">Gestion du compte</a></li>
+                    <li><a href="../Chercheur/EtudeEnCours/EtudeEnCours.php">Etude en cours</a></li>
+                    <li><a href="../Chercheur/FindEtude/FindEtude.php">Recherche d'étude</a></li>
                     
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

@@ -115,15 +115,9 @@ require_once("../../modele/equipe.php");
                             <label style="margin-right: 5px;">Ajouter des membres</label>
 
                             <select id="done" class="selectpicker" multiple data-done-button="true">
-                                
-                                <?php
-                                    $utilisateurs = new Utilisateur;
-                                    
-                                    $list_utilisateurs = $utilisateurs->getUtilisateurs();
-                                    
-                                    $utilisateurs->fillInputUtilisateur($list_utilisateurs);
-                                ?>
-                              
+                              <option>loool</option>
+                              <option>llpjjg</option>
+                              <option>okhhjdhgr</option>
                           </select>
                            
                         </div>
