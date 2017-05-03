@@ -43,7 +43,7 @@ if (!isset($_SESSION["Role"])) {
                     <li><a href="../Admin/Molecule/Ajout-molecule-form.php?er">Ajout Molecule</a></li>
                     <li><a href="../Admin/Antibiotique/Ajout-antibiotique-form.php?er">Ajout Antibiotique</a></li>
                     <li><a href="../Admin/Bacterie/Ajout-bacterie-form.php?er">Ajout Bacterie</a></li>
-                    <li><a href="../Equipe/Gestion-equipe-form.php?er">Gestion D'equipe</a></li>
+                    <li><a href="../Admin/Equipe/Gestion-equipe-form.php?er">Gestion D'equipe</a></li>
                     <li><a href="../Etude/Creation-etude-form.php?er">Création d'étude</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
