@@ -18,12 +18,16 @@ require_once '../../Connexion/Config.php';
 
             return $resultat;
         }
-        function deleteEquipeByName($id){
+        function deleteEquipeById($id){
             $db = new PDO("mysql:host=" . Config::SERVERNAME . ";dbname=" . Config::DBNAME, Config::USER, Config::PASSWORD);
             $req = $db->prepare("DELETE FROM equipe WHERE ID_Equipe='". $id ."'");
-            $req->execute();
 
-            return true;
+            if($req->execute()){
+                return true;
+            }
+            else {
+                return false;
+            }
         }
         function addEquipe($name){
             $db = new PDO("mysql:host=" . Config::SERVERNAME . ";dbname=" . Config::DBNAME, Config::USER, Config::PASSWORD);

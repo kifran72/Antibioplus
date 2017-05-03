@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost
--- Généré le :  Mer 03 Mai 2017 à 19:46
+-- Généré le :  Mer 03 Mai 2017 à 20:35
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -87,8 +87,7 @@ INSERT INTO `equipe` (`ID_Equipe`, `Nom_Equipe`, `Actif`, `En_Etude`) VALUES
 (9, 'equipe F', 1, 0),
 (10, 'equipe TEST', 1, 0),
 (11, 'equipe TEST2', 1, 0),
-(12, 'equipe TEST3', 1, 0),
-(13, 'TEST4', 1, 0);
+(12, 'equipe TEST3', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -134,7 +133,7 @@ CREATE TABLE `personne` (
 
 INSERT INTO `personne` (`ID_Personne`, `Nom_Personne`, `Prenom_Personne`, `MDP_Personne`, `Role_Personne`, `ID_Equipe`, `MAIL_Personne`) VALUES
 (9, 'Rizzon', 'charles', 'epsi1234', 0, 12, 'charles.rizzon@epsi.fr'),
-(10, 'admin', 'admin', 'toor', 0, 13, 'root');
+(10, 'admin', 'admin', 'toor', 0, NULL, 'root');
 
 -- --------------------------------------------------------
 
@@ -282,7 +281,7 @@ ALTER TABLE `souche`
 -- Contraintes pour la table `personne`
 --
 ALTER TABLE `personne`
-  ADD CONSTRAINT `personne_ibfk_1` FOREIGN KEY (`ID_Equipe`) REFERENCES `equipe` (`ID_Equipe`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `personne_ibfk_1` FOREIGN KEY (`ID_Equipe`) REFERENCES `equipe` (`ID_Equipe`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `resultat`

@@ -163,11 +163,11 @@ if(isset($_POST['ajouter-equipe']) && !empty($_POST)){
             if(isset($_POST['suppr_equipe']) && isset($_POST['ID_Equipe']) && isset($_POST['recherche_equipe'])){
                 $ID_Equipe = $_POST['ID_Equipe'];
                 $recherche = $_POST['recherche_equipe'];
-
+                
                 $equipe = new Equipe;
 
-                $equipe->deleteEquipeByName($ID_Equipe);
-
+                var_dump($equipe->deleteEquipeById($ID_Equipe));
+                
                 $_POST['nom-equipe'] = $recherche;
             }
             if (isset($_POST['nom-equipe']) && !empty($_POST)) {
