@@ -46,8 +46,8 @@ include "../../modele/antibiotique.php";
                     <li><a href="../Molecule/Ajout-molecule-form.php?er">Ajout Molecule</a></li>
                     <li class="active"><a href="#">Ajout Antibiotique</a></li>
                     <li><a href="../Bacterie/Ajout-bacterie-form.php?er">Ajout Bacterie</a></li>
-                    <li><a href="../Utilisateur/Gestion-equipe-form.php?er">Gestion D'equipe</a></li>
-                    <li><a href="../CreationEtudes/CreationEtudes.php?er">Création d'étude</a></li>
+                    <li><a href="../Equipe/Gestion-equipe-form.php?er">Gestion D'equipe</a></li>
+                    <li><a href="../../Etude/Creation-etude-form.php?er">Création d'étude</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../../Connexion/Deconnexion.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

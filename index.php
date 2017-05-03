@@ -1,6 +1,6 @@
 <?php
 
-header('location: Connexion/Page-co.php');
+header('location: Connexion/Page-co.php?mes');
 
     
 ?>

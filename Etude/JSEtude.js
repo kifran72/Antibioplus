@@ -7,6 +7,8 @@ function addmol(elmt, value)
     tr.appendChild(td);
     var tdText = document.createTextNode(value);
     td.appendChild(tdText);
+    
+    
     var input = document.createElement("input");
     input.setAttribute("type", "hidden");
     input.setAttribute("name", "mol[]");

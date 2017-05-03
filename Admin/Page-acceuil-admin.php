@@ -27,7 +27,7 @@ if (!isset($_SESSION["Role"])) {
 
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/vue/Aceuil.css">
-        <title>Acceuil Admin</title>
+        <title>Acceuil Administrateur</title>
     </head>
 
     <body>
@@ -43,8 +43,8 @@ if (!isset($_SESSION["Role"])) {
                     <li><a href="../Admin/Molecule/Ajout-molecule-form.php?er">Ajout Molecule</a></li>
                     <li><a href="../Admin/Antibiotique/Ajout-antibiotique-form.php?er">Ajout Antibiotique</a></li>
                     <li><a href="../Admin/Bacterie/Ajout-bacterie-form.php?er">Ajout Bacterie</a></li>
-                    <li><a href="../Admin/Utilisateur/Gestion-equipe-form.php?er">Gestion D'equipe</a></li>
-                    <li><a href="../Admin/CreationEtudes/CreationEtudes.php?er">Création d'étude</a></li>
+                    <li><a href="../Equipe/Gestion-equipe-form.php?er">Gestion D'equipe</a></li>
+                    <li><a href="../Etude/Creation-etude-form.php?er">Création d'étude</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="../Connexion/Page-co.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
